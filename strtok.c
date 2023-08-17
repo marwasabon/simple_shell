@@ -5,11 +5,11 @@
 #include "main.h"
 #include <unistd.h>
 /**
-  *count_words - Function to count the number of spaces in a string
-  *@str: String to count the spaces for
-  *
-  *Return: >= 0 if successful, and -1 otherwise
-  */
+ *count_words - Function to count the number of spaces in a string
+ *@str: String to count the spaces for
+ *
+ *Return: >= 0 if successful, and -1 otherwise
+ */
 
 int count_words(char *str)
 {
@@ -35,11 +35,11 @@ int count_words(char *str)
 }
 
 /**
-  *string_to_tokens - Function to split string to array of tokens seperated
-  *by space
-  *@string: String to be split into tokens
-  *Return: An array of strings
-  */
+ *string_to_tokens - Function to split string to array of tokens seperated
+ *by space
+ *@string: String to be split into tokens
+ *Return: An array of strings
+ */
 
 char **string_to_tokens(char *string)
 {
@@ -83,11 +83,11 @@ char **string_to_tokens(char *string)
 
 
 /**
-  *print_string_array - Function to print the string in an array
-  *@str_array: array of strings
-  *
-  *Return: 0, if successful
-  */
+ *print_string_array - Function to print the string in an array
+ *@str_array: array of strings
+ *
+ *Return: 0, if successful
+ */
 
 int print_string_array(char **str_array)
 {
@@ -113,11 +113,11 @@ int print_string_array(char **str_array)
 }
 
 /**
-  *free_string_array - Function to free a string array
-  *@string_array: string array passed into func
-  *
-  *Return: 0
-  */
+ *free_string_array - Function to free a string array
+ *@string_array: string array passed into func
+ *
+ *Return: 0
+ */
 
 int free_string_array(char **string_array)
 {
@@ -134,5 +134,18 @@ int free_string_array(char **string_array)
 	for (j = 0; j < i; j++)
 		free(string_array[j]);
 	free(string_array);
+	return (0);
+}
+/**
+ *free_all - Function to free a string array
+ *@line: string command line.
+ *@argv: argument vector.
+ *Return: 0
+ */
+
+int free_all(char *line, char **argv)
+{
+	free(line);
+	free_string_array(argv);
 	return (0);
 }
