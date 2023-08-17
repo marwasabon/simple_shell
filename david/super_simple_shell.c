@@ -26,18 +26,12 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	while ((n_read = _getline(&line, &n)) != -1)
 	{
 		argv = string_to_tokens(line);
-		if (argv == NULL)
-		{
-			write(STDOUT_FILENO, "$ ", 3);
-			command_count++;
-			continue;
-		}  /*Test for PATH enters with argv[0]*/
 		child_pid = fork();
 		if (child_pid == -1)
 			free_all(line, argv);
 		if (child_pid == 0)
 		{
-			execve(argv[0], argv, env);
+			_exec(argv, env);
 			_printerror(STDERR_FILENO, av[0], command_count);
 			free_all(line, argv);
 			return (1);

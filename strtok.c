@@ -46,6 +46,8 @@ char **string_to_tokens(char *string)
 	char **string_array;
 	char *string_cpy, *token;
 
+	if (string == NULL)
+		return (NULL);
 	string_cpy = _strdup(string);
 	if (string_cpy == NULL)
 		return (NULL);
@@ -109,14 +111,16 @@ int free_string_array(char **string_array)
 
 /**
  *free_all - Function to free a string array
- *@line: string command line.
- *@argv: argument vector.
+ *@string: string command line.
+ *@string_array: argument vector.
  *Return: 0
  */
 
-int free_all(char *line, char **argv)
+int free_all(char *string, char **string_array)
 {
-	free(line);
-	free_string_array(argv);
+	if (string)
+		free(string);
+	if (string_array)
+		free_string_array(string_array);
 	return (0);
 }

@@ -16,6 +16,13 @@ int free_all(char *line, char **argv);
 char *int_to_string(int command);
 unsigned int int_count(int command);
 int _printerror(int fd, char *string, int command_count);
+int _exec(char **argv, char **env);
+
+
+int print_path_name(char *full_pathname);
+int dir_or_not(char *pathname);
+int cmd_or_not(char *pathname);
+char *get_cmd_path(char *text_from_line);
 
 extern char **environ;
 
