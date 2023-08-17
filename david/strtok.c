@@ -82,36 +82,6 @@ char **string_to_tokens(char *string)
 
 
 /**
-  *print_string_array - Function to print the string in an array
-  *@str_array: array of strings
-  *
-  *Return: 0, if successful
-  */
-
-int print_string_array(char **str_array)
-{
-	char *str = "placeholder";
-	int i = 0, j;
-
-	for (i = 0; str != NULL; i++)
-	{
-		str = str_array[i];
-		if (str != NULL)
-		{
-			if (i == 0)
-				printf("%s", str);
-			else
-				printf("...%s", str);
-		}
-	}
-	printf("\n");
-	for (j = 0; j < i; j++)
-		free(str_array[j]);
-	free(str_array);
-	return (0);
-}
-
-/**
   *free_string_array - Function to free a string array
   *@string_array: string array passed into func
   *
@@ -133,5 +103,20 @@ int free_string_array(char **string_array)
 	for (j = 0; j < i; j++)
 		free(string_array[j]);
 	free(string_array);
+	return (0);
+}
+
+
+/**
+ *free_all - Function to free a string array
+ *@line: string command line.
+ *@argv: argument vector.
+ *Return: 0
+ */
+
+int free_all(char *line, char **argv)
+{
+	free(line);
+	free_string_array(argv);
 	return (0);
 }

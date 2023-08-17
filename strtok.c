@@ -1,15 +1,14 @@
 #include <string.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include "main.h"
 #include <unistd.h>
 /**
- *count_words - Function to count the number of spaces in a string
- *@str: String to count the spaces for
- *
- *Return: >= 0 if successful, and -1 otherwise
- */
+  *count_words - Function to count the number of spaces in a string
+  *@str: String to count the spaces for
+  *
+  *Return: >= 0 if successful, and -1 otherwise
+  */
 
 int count_words(char *str)
 {
@@ -19,7 +18,7 @@ int count_words(char *str)
 	if (str == NULL)
 		return (-1);
 
-	s = strdup(str);
+	s = _strdup(str);
 	if (s == NULL)
 		return (-1);
 
@@ -35,11 +34,11 @@ int count_words(char *str)
 }
 
 /**
- *string_to_tokens - Function to split string to array of tokens seperated
- *by space
- *@string: String to be split into tokens
- *Return: An array of strings
- */
+  *string_to_tokens - Function to split string to array of tokens seperated
+  *by space
+  *@string: String to be split into tokens
+  *Return: An array of strings
+  */
 
 char **string_to_tokens(char *string)
 {
@@ -47,7 +46,7 @@ char **string_to_tokens(char *string)
 	char **string_array;
 	char *string_cpy, *token;
 
-	string_cpy = strdup(string);
+	string_cpy = _strdup(string);
 	if (string_cpy == NULL)
 		return (NULL);
 	count = count_words(string);
@@ -65,7 +64,7 @@ char **string_to_tokens(char *string)
 	token = strtok(string_cpy, " \t");
 	for (i = 0; token != NULL; i++)
 	{
-		string_array[i] = strdup(token);
+		string_array[i] = _strdup(token);
 		if (string_array[i] == NULL)
 		{
 			for (j = 0; j <= i; i++)
@@ -83,41 +82,11 @@ char **string_to_tokens(char *string)
 
 
 /**
- *print_string_array - Function to print the string in an array
- *@str_array: array of strings
- *
- *Return: 0, if successful
- */
-
-int print_string_array(char **str_array)
-{
-	char *str = "placeholder";
-	int i = 0, j;
-
-	for (i = 0; str != NULL; i++)
-	{
-		str = str_array[i];
-		if (str != NULL)
-		{
-			if (i == 0)
-				printf("%s", str);
-			else
-				printf("...%s", str);
-		}
-	}
-	printf("\n");
-	for (j = 0; j < i; j++)
-		free(str_array[j]);
-	free(str_array);
-	return (0);
-}
-
-/**
- *free_string_array - Function to free a string array
- *@string_array: string array passed into func
- *
- *Return: 0
- */
+  *free_string_array - Function to free a string array
+  *@string_array: string array passed into func
+  *
+  *Return: 0
+  */
 
 int free_string_array(char **string_array)
 {
@@ -136,6 +105,8 @@ int free_string_array(char **string_array)
 	free(string_array);
 	return (0);
 }
+
+
 /**
  *free_all - Function to free a string array
  *@line: string command line.
