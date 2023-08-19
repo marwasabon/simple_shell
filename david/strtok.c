@@ -127,7 +127,6 @@ int free_all(char *string, char **string_array, char *full_path)
 	if (full_path != NULL)
 	{
 		free(full_path);
-		full_path = NULL;
 	}
 	return (0);
 }

@@ -71,8 +71,10 @@ char *get_cmd_path(char *text_from_line)
 	}
 	else
 	{
-		path_str_copy = getenv("PATH"); /* use _getenv of main func instead*/
+		path_str_copy = _getenv("PATH"); /* use _getenv of main func instead*/
 		path_str = _strdup(path_str_copy);
+		if (path_str_copy != NULL)
+			free(path_str_copy);
 		if (path_str == NULL)
 			return (NULL);
 		token = strtok(path_str, ":");
@@ -91,10 +93,7 @@ char *get_cmd_path(char *text_from_line)
 			}
 			token = strtok(NULL, ":");
 			free(full_path);
-		}
-	}
+		}}
 	free(path_str);
-	return (NULL);
-	/*free text, if str is not null*/
+	return (NULL);	/*free text, if str is not null*/
 }
-

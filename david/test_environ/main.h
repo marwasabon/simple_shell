@@ -32,6 +32,7 @@ char *get_cmd_path(char *text_from_line);
 char * _path(char **argv, char **line, char *shell_name, int cmd_count);
 int _print_path_error(char *shell_name, char *wrong_cmd, int command_count);
 
+char *_getenv(char *name);
 extern char **environ;
 
 #endif

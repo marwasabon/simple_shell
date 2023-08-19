@@ -62,6 +62,7 @@ char *_path(char **argv, char **line, char *shell_name, int cmd_count)
 	if (full_path_name == NULL)
 	{
 		_print_path_error(shell_name, argv[0], cmd_count);
+		free_all(*line, argv, full_path_name);
 		return (NULL);
 	}
 
