@@ -113,14 +113,21 @@ int free_string_array(char **string_array)
  *free_all - Function to free a string array
  *@string: string command line.
  *@string_array: argument vector.
+ *@full_path: name of full path name
+ *
  *Return: 0
  */
 
-int free_all(char *string, char **string_array)
+int free_all(char *string, char **string_array, char *full_path)
 {
 	if (string)
 		free(string);
 	if (string_array)
 		free_string_array(string_array);
+	if (full_path != NULL)
+	{
+		free(full_path);
+		full_path = NULL;
+	}
 	return (0);
 }

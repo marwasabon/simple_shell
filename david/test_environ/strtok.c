@@ -1,6 +1,5 @@
 #include <string.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include "main.h"
 #include <unistd.h>
@@ -19,7 +18,7 @@ int count_words(char *str)
 	if (str == NULL)
 		return (-1);
 
-	s = strdup(str);
+	s = _strdup(str);
 	if (s == NULL)
 		return (-1);
 
@@ -47,7 +46,9 @@ char **string_to_tokens(char *string)
 	char **string_array;
 	char *string_cpy, *token;
 
-	string_cpy = strdup(string);
+	if (string == NULL)
+		return (NULL);
+	string_cpy = _strdup(string);
 	if (string_cpy == NULL)
 		return (NULL);
 	count = count_words(string);
@@ -65,7 +66,7 @@ char **string_to_tokens(char *string)
 	token = strtok(string_cpy, " \t");
 	for (i = 0; token != NULL; i++)
 	{
-		string_array[i] = strdup(token);
+		string_array[i] = _strdup(token);
 		if (string_array[i] == NULL)
 		{
 			for (j = 0; j <= i; i++)
@@ -81,36 +82,6 @@ char **string_to_tokens(char *string)
 	return (string_array);  /*string_array must be freed by user program*/
 }
 
-
-/**
-  *print_string_array - Function to print the string in an array
-  *@str_array: array of strings
-  *
-  *Return: 0, if successful
-  */
-
-int print_string_array(char **str_array)
-{
-	char *str = "placeholder";
-	int i = 0, j;
-
-	for (i = 0; str != NULL; i++)
-	{
-		str = str_array[i];
-		if (str != NULL)
-		{
-			if (i == 0)
-				printf("%s", str);
-			else
-				printf("...%s", str);
-		}
-	}
-	printf("\n");
-	for (j = 0; j < i; j++)
-		free(str_array[j]);
-	free(str_array);
-	return (0);
-}
 
 /**
   *free_string_array - Function to free a string array
@@ -134,5 +105,26 @@ int free_string_array(char **string_array)
 	for (j = 0; j < i; j++)
 		free(string_array[j]);
 	free(string_array);
+	return (0);
+}
+
+
+/**
+ *free_all - Function to free a string array
+ *@string: string command line.
+ *@string_array: argument vector.
+ *@full_path: name of full path name
+ *
+ *Return: 0
+ */
+
+int free_all(char *string, char **string_array, char *full_path)
+{
+	if (string)
+		free(string);
+	if (string_array)
+		free_string_array(string_array);
+	if (full_path)
+		free(full_path);
 	return (0);
 }
