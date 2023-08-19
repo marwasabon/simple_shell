@@ -6,12 +6,12 @@
 #include <sys/types.h>
 
 /**
-  *main - Function to build super simple shell
-  *@ac: argument count
-  *@av: argument vector
-  *@env: environment variables
-  *Return: returns 0, on success, and 1 otherwise
-  */
+ *main - Function to build super simple shell
+ *@ac: argument count
+ *@av: argument vector
+ *@env: environment variables
+ *Return: returns 0, on success, and 1 otherwise
+ */
 
 int main(__attribute__((unused)) int ac, char **av, char **env)
 {
@@ -26,6 +26,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	while ((n_read = _getline(&line, &n)) != -1)
 	{
 		argv = string_to_tokens(line);
+		extra(argv, &line);
 		full_name = _path(argv, &line, av[0], command_count);
 		if (full_name != NULL)
 		{
