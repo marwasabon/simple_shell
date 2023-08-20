@@ -1,4 +1,4 @@
-# imple_shell
+# simple_shell
 
 ## Authors
 [Akingbeni David]
