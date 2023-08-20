@@ -26,7 +26,11 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	while ((n_read = _getline(&line, &n)) != -1)
 	{
 		argv = string_to_tokens(line);
-		extra(argv, &line);
+		if (extra(argv, &line) == 0)
+		{
+		print_prompt(STDIN_FILENO);
+		continue;
+		}
 		full_name = _path(argv, &line, av[0], command_count);
 		if (full_name != NULL)
 		{
