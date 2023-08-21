@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stddef.h>
+#include <errno.h>
 int print_prompt(int fd);
 int count_words(char *str);
 char **string_to_tokens(char *string);
@@ -34,7 +35,7 @@ int _print_path_error(char *shell_name, char *wrong_cmd, int command_count);
 
 char *_getenv(char *name);
 int extra(char **argv,char **line);
-void exit_shell(void);
+void exit_shell(char **argv);
 void print_env(void);
 extern char **environ;
 
