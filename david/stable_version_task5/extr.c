@@ -24,7 +24,7 @@ void exit_shell(char **argv)
 	}
 	if (errno > 255)
 		errno %= 256;
-	exit(errno);
+	exit(EXIT_SUCCESS);
 
 }
 /**
@@ -54,31 +54,30 @@ void print_env(void)
  * @line: pointer to the input line
  * Return: 1 if the shell should execute the command, 0 otherwise
  */
-int extra(char ***argv, char **line, int *status)
+int extra(char **argv, char **line, int *status)
 {
 	int stat_no;
 
-	if (*argv == NULL)
+	if (argv == NULL)
 	{
 		if (*line)
 			free(*line);
 		return (0);
 	}
-	if (_strcmp((*argv)[0], "exit") == 0)
+	if (_strcmp(argv[0], "exit") == 0)
 	{
 		free(*line);
-		free_string_array(*argv);
-		stat_no = *status % 255;
+		free_string_array(argv);
+		stat_no = *status / 255;
 		/*We can't exit shell without freeing*/
 		exit(stat_no);
 	}
-	if (_strcmp((*argv)[0], "env") == 0)
+	if (_strcmp(argv[0], "env") == 0)
 	{
 		print_env();
 		free(*line);
-		free_string_array(*argv);
 		*line = NULL;
-		*argv = NULL;
+		free_string_array(argv);
 		/*command_count++*/
 		return (0);
 	}

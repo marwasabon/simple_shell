@@ -5,6 +5,8 @@
 
 /**
  * exit_shell - exits the shell
+ *@argv: vector of argumments
+ *
  * Return: nothing
  */
 void exit_shell(char **argv)
@@ -52,6 +54,7 @@ void print_env(void)
  * extra - handles extra shell commands like "exit" and "env"
  * @argv: array of arguments passed to the shell
  * @line: pointer to the input line
+ * @status: Address of status
  * Return: 1 if the shell should execute the command, 0 otherwise
  */
 int extra(char ***argv, char **line, int *status)

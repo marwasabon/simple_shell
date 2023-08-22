@@ -30,12 +30,11 @@ char *get_cmd_path(char *text_from_line);
 int dir_or_not(char *pathname);
 int cmd_or_not(char *pathname);
 char *get_cmd_path(char *text_from_line);
-char *_path(char **argv, char **line,
-		char *shell_name, int cmd_count, int *staus);
+char * _path(char **argv, char **line, char *shell_name, int cmd_count);
 int _print_path_error(char *shell_name, char *wrong_cmd, int command_count);
 
 char *_getenv(char *name);
-int extra(char ***argv, char **line, int *status);
+int extra(char **argv, char **line, int *status);
 void exit_shell(char **argv);
 void print_env(void);
 extern char **environ;
