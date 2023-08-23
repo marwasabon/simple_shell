@@ -80,7 +80,7 @@ char *get_cmd_path(char *text_from_line)
 	{
 		if (cmd_or_not(text_from_line) == 0)
 		{
-			full_path = strdup(text_from_line);
+			full_path = _strdup(text_from_line);
 			if (full_path == NULL)
 				return (NULL);
 			return (full_path);

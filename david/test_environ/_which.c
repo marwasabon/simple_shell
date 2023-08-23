@@ -47,6 +47,24 @@ int cmd_or_not(char *pathname)
 }
 
 /**
+  *cpy_n_cat - Function to copy and catenate full_path with text
+  *@path: proposed path of interest
+  *@suffix: suffix to add to original path
+  *@prefix: The prefix to the path
+  *
+  *Return: full_path
+  */
+
+char *cpy_n_cat(char *path, char *prefix, char *suffix)
+{
+	_strcpy(path, prefix);
+	_strcat(path, "/");
+	_strcat(path, suffix);
+	return (path);
+}
+
+
+/**
   *get_cmd_path - function to get command full pathname if cmd exists
   *@text_from_line: Raw text that should come from command line
   *
@@ -62,7 +80,7 @@ char *get_cmd_path(char *text_from_line)
 	{
 		if (cmd_or_not(text_from_line) == 0)
 		{
-			full_path = strdup(text_from_line);
+			full_path = _strdup(text_from_line);
 			if (full_path == NULL)
 				return (NULL);
 			return (full_path);
@@ -83,9 +101,7 @@ char *get_cmd_path(char *text_from_line)
 			full_path = malloc(sizeof(char) * 1024);
 			if (full_path == NULL)
 				break;
-			_strcpy(full_path, token);
-			_strcat(full_path, "/");
-			_strcat(full_path, text_from_line);
+			cpy_n_cat(full_path, token, text_from_line);
 			if (stat(full_path, &buf) == 0)
 			{
 				free(path_str);

@@ -17,20 +17,20 @@ char *_getenv(char *name)
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		env_copy = strdup(environ[i]);
+		env_copy = _strdup(environ[i]);
 		if (env_copy == NULL)
 			return (NULL);
 		token = strtok(env_copy, "=");
-		if (strcmp(token, name) == 0)
+		if (_strcmp(token, name) == 0)
 		{
-			remnant = strdup(token + strlen(token) + 1);
+			remnant = _strdup(token + _strlen(token) + 1);
 			if (remnant == NULL)
 			{
 				free(env_copy);
 				return (NULL);
 			}
 			free(env_copy);
-			return (remnant); /*Free remanant by user when no longer needed, return is not nusll*/
+			return (remnant); /*Free remanant when not null*/
 		}
 		free(env_copy);
 	}
