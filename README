@@ -1,0 +1,7 @@
+This project was conducted as an exercise from ALX/HOLBERTON
+by Marwa Sabon and Akingbeni David.
+
+The project can work using gcc compiler as gcc -flags *.c
+
+The result is a simple shell that does simple thingns like 
+ls.
