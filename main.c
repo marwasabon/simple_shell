@@ -24,13 +24,12 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	pid_t child_pid;
 
 	print_prompt(STDIN_FILENO);
-	signal(SIGINT, SIG_IGN);
 	while ((n_read = _getline(&line, &n)) != -1)
 	{
 		argv = string_to_tokens(line);
 		extra(&argv, &line, &status);
 		full_name = _path(argv, &line, av[0], command_count, &status);
-		if (full_name != NULL && (access(full_name, F_OK) != -1))
+		if (full_name != NULL)
 		{
 			child_pid = fork();
 			if (child_pid == -1)
