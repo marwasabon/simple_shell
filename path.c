@@ -42,13 +42,12 @@ int _print_path_error(char *shell_name, char *wrong_cmd, int command_count)
   *@shell_name: name of the shell from av[0]
   *@cmd_count: count of command
   *@status: address of status.
-  *@env: array of env
   *
   *Return: character pointer
   */
 
 char *_path(char **argv, char **line, char *shell_name,
-		int cmd_count, int *status, char **env)
+		int cmd_count, int *status)
 {
 	char *full_path_name;
 
@@ -61,7 +60,7 @@ char *_path(char **argv, char **line, char *shell_name,
 		}
 		return (NULL);
 	}
-	full_path_name = get_cmd_path(argv[0], env); /*SHOULD BE FREED*/
+	full_path_name = get_cmd_path(argv[0]); /*SHOULD BE FREED*/
 	if (full_path_name == NULL)
 	{
 		*status = 127;
