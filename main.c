@@ -24,6 +24,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	pid_t child_pid;
 
 	print_prompt(STDIN_FILENO);
+	signal(SIGINT, SIG_IGN);
 	while ((n_read = _getline(&line, &n)) != -1)
 	{
 		argv = string_to_tokens(line);
