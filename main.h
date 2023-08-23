@@ -1,5 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #include <stddef.h>
 #include <errno.h>
 int print_prompt(int fd);

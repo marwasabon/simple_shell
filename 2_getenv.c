@@ -23,7 +23,7 @@ char *_getenv(char *name)
 		token = strtok(env_copy, "=");
 		if (_strcmp(token, name) == 0)
 		{
-			remnant = _strdup(token + strlen(token) + 1);
+			remnant = _strdup(token + _strlen(token) + 1);
 			if (remnant == NULL)
 			{
 				free(env_copy);
