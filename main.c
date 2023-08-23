@@ -29,7 +29,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		argv = string_to_tokens(line);
 		extra(&argv, &line, &status);
 		full_name = _path(argv, &line, av[0], command_count, &status);
-		if (full_name != NULL)
+		if (full_name != NULL && (access(full_name, F_OK) != -1))
 		{
 			child_pid = fork();
 			if (child_pid == -1)
