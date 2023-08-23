@@ -12,15 +12,9 @@
 ssize_t _getline(char **lineptr, size_t *n)
 {
 	ssize_t n_read;
-	unsigned int len;
+	int len;
 
 	n_read = getline(lineptr, n, stdin);
-	if (*lineptr[0] == '\n')
-	{
-		free(*lineptr);
-		*lineptr = NULL;
-		return (0);
-	}
 	if (n_read <= 0)
 		return (n_read);
 	len = _strlen(*lineptr);

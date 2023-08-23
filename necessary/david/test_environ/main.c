@@ -18,7 +18,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 {
 	ssize_t n_read;
 	char *line = NULL, *full_name;
-	size_t n;
+	size_t n = 0;
 	int status = 0, command_count = 1;
 	char **argv;
 	pid_t child_pid;
