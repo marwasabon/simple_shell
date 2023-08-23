@@ -67,11 +67,12 @@ char *cpy_n_cat(char *path, char *prefix, char *suffix)
 /**
   *get_cmd_path - function to get command full pathname if cmd exists
   *@text_from_line: Raw text that should come from command line
+  *@env: array of env
   *
   *Return: An actual string if given command is a command, or NULL otherwise
   */
 
-char *get_cmd_path(char *text_from_line)
+char *get_cmd_path(char *text_from_line, char **env)
 {
 	char *path_str, *path_str_copy, *token, *full_path;
 	struct stat buf;
@@ -89,7 +90,7 @@ char *get_cmd_path(char *text_from_line)
 	}
 	else
 	{
-		path_str_copy = _getenv("PATH"); /* use _getenv of main func instead*/
+		path_str_copy = _getenv("PATH", env); /* use _getenv of main func instead*/
 		path_str = _strdup(path_str_copy);
 		if (path_str_copy != NULL)
 			free(path_str_copy);

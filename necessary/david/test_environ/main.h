@@ -26,19 +26,17 @@ int _exec(char **linetptr, char **argv, char **env, char *cmd_name);
 int print_path_name(char *full_pathname);
 int dir_or_not(char *pathname);
 int cmd_or_not(char *pathname);
-char *get_cmd_path(char *text_from_line);
 
 int dir_or_not(char *pathname);
 int cmd_or_not(char *pathname);
-char *get_cmd_path(char *text_from_line);
+char *get_cmd_path(char *text_from_line, char **env);
 char *_path(char **argv, char **line,
-		char *shell_name, int cmd_count, int *staus);
+		char *shell_name, int cmd_count, int *staus, char **env);
 int _print_path_error(char *shell_name, char *wrong_cmd, int command_count);
 
-char *_getenv(char *name);
-int extra(char ***argv, char **line, int *status);
+char *_getenv(char *name, char **env);
+int extra(char ***argv, char **line, int *status, char **env);
 void exit_shell(char **argv);
-void print_env(void);
-extern char **environ;
+void print_env(char **env);
 
 #endif

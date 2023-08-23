@@ -31,22 +31,20 @@ void exit_shell(char **argv)
 }
 /**
  * print_env - prints the environment variables
- *@env: array of env
- *
  * Return: nothing
  */
-void print_env(char **env)
+void print_env(void)
 {
 	int i, len;
 
-	if (env == NULL)
+	if (environ == NULL)
 		return;
-	for (i = 0; env[i] != NULL; i++)
+	for (i = 0; environ[i] != NULL; i++)
 	{
-		len = _strlen(env[i]);
+		len = _strlen(environ[i]);
 		if (len != 0)
 		{
-			write(STDOUT_FILENO, env[i], len);
+			write(STDOUT_FILENO, environ[i], len);
 			write(STDOUT_FILENO, "\n", 1);
 		}
 	}
@@ -59,7 +57,7 @@ void print_env(char **env)
  * @status: Address of status
  * Return: 1 if the shell should execute the command, 0 otherwise
  */
-int extra(char ***argv, char **line, int *status, char **env)
+int extra(char ***argv, char **line, int *status)
 {
 	int stat_no;
 
@@ -79,7 +77,7 @@ int extra(char ***argv, char **line, int *status, char **env)
 	}
 	if (_strcmp((*argv)[0], "env") == 0)
 	{
-		print_env(env);
+		print_env();
 		free(*line);
 		free_string_array(*argv);
 		*line = NULL;

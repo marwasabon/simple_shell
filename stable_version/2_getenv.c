@@ -6,19 +6,18 @@
 /**
   *_getenv - function to get a specific environment variable name
   *@name: name of variaable to retrieve from environment list
-  *@env: array of env
   *
   *Return: A pointer to characters.
   */
 
-char *_getenv(char *name, char **env)
+char *_getenv(char *name)
 {
 	char *env_copy, *token, *remnant;
 	unsigned int i;
 
-	for (i = 0; env[i] != NULL; i++)
+	for (i = 0; environ[i] != NULL; i++)
 	{
-		env_copy = _strdup(env[i]);
+		env_copy = _strdup(environ[i]);
 		if (env_copy == NULL)
 			return (NULL);
 		token = strtok(env_copy, "=");

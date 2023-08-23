@@ -5,6 +5,8 @@
 
 /**
  * exit_shell - exits the shell
+ *@argv: vector of argumments
+ *
  * Return: nothing
  */
 void exit_shell(char **argv)
@@ -29,20 +31,22 @@ void exit_shell(char **argv)
 }
 /**
  * print_env - prints the environment variables
+ *@env: array of env
+ *
  * Return: nothing
  */
-void print_env(void)
+void print_env(char **env)
 {
 	int i, len;
 
-	if (environ == NULL)
+	if (env == NULL)
 		return;
-	for (i = 0; environ[i] != NULL; i++)
+	for (i = 0; env[i] != NULL; i++)
 	{
-		len = _strlen(environ[i]);
+		len = _strlen(env[i]);
 		if (len != 0)
 		{
-			write(STDOUT_FILENO, environ[i], len);
+			write(STDOUT_FILENO, env[i], len);
 			write(STDOUT_FILENO, "\n", 1);
 		}
 	}
@@ -52,9 +56,10 @@ void print_env(void)
  * extra - handles extra shell commands like "exit" and "env"
  * @argv: array of arguments passed to the shell
  * @line: pointer to the input line
+ * @status: Address of status
  * Return: 1 if the shell should execute the command, 0 otherwise
  */
-int extra(char ***argv, char **line, int *status)
+int extra(char ***argv, char **line, int *status, char **env)
 {
 	int stat_no;
 
@@ -74,7 +79,7 @@ int extra(char ***argv, char **line, int *status)
 	}
 	if (_strcmp((*argv)[0], "env") == 0)
 	{
-		print_env();
+		print_env(env);
 		free(*line);
 		free_string_array(*argv);
 		*line = NULL;
